@@ -11,7 +11,6 @@ declare type SearchParamProps = {
     firstName: string;
     lastName: string;
     address1: string;
-    city: string;
     state: string;
     postalCode: string;
     dateOfBirth: string;
@@ -35,7 +34,6 @@ declare type SearchParamProps = {
     lastName: string;
     name: string;
     address1: string;
-    city: string;
     state: string;
     postalCode: string;
     dateOfBirth: string;
@@ -130,7 +128,6 @@ declare type SearchParamProps = {
     email: string;
     type: string;
     address1: string;
-    city: string;
     state: string;
     postalCode: string;
     dateOfBirth: string;
