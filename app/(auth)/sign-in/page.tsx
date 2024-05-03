@@ -1,9 +1,10 @@
+import AuthForm from "@/components/AuthForm";
 
 const SignIn = () => {
     return(
-        <div>
-             <p> Welcome to signin page part </p>
-        </div>
+        <section className="flex-center size-full max-sm:px-6">
+             <AuthForm type="sign-in" />
+        </section>
     )
 }
 export default SignIn;
