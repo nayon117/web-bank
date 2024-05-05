@@ -27,14 +27,14 @@ const AuthForm = ({ type }: { type: string }) => {
     defaultValues: {
       email: "",
       password: "",
-      firstName: "",
-      lastName: "",
-      address1: "",
-      city: "",
-      state: "",
-      postalCode: "",
-      dateOfBirth: "",
-      ssn: "",
+      // firstName: "",
+      // lastName: "",
+      // address1: "",
+      // city: "",
+      // state: "",
+      // postalCode: "",
+      // dateOfBirth: "",
+      // ssn: "",
     },
   });
 
@@ -58,6 +58,7 @@ const AuthForm = ({ type }: { type: string }) => {
           dateOfBirth: data.dateOfBirth!,
           ssn: data.ssn!,
         }
+        console.log(userData)
         const newUser = await signUp(userData)
 
         setUser(newUser)

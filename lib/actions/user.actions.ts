@@ -10,7 +10,7 @@ import {
   ProcessorTokenCreateRequestProcessorEnum,
   Products,
 } from "plaid";
-import { plaidClient } from "../plaid";
+import { plaidClient } from "@/lib/plaid";
 import { revalidatePath } from "next/cache";
 import { addFundingSource, createDwollaCustomer } from "./dwolla.actions";
 
