@@ -7,12 +7,29 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { transactionCategoryStyles } from "@/constants";
 import {
+  cn,
   formatAmount,
   formatDateTime,
   getTransactionStatus,
   removeSpecialCharacters,
 } from "@/lib/utils";
+
+const CategoryBadge = ({ category }: CategoryBadgeProps) => {
+
+  const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
+    transactionCategoryStyles[
+      category as keyof typeof transactionCategoryStyles
+    ] || transactionCategoryStyles.default;
+
+  return (
+    <div className={cn("category-badge", borderColor, chipBackgroundColor)}>
+      <div className={cn("size-2 rounded-full",backgroundColor)} />
+      <p className={cn("text-[12px] font-medium", textColor)}>{category}</p>
+    </div>
+  );
+};
 
 const TransactionsTable = ({ transactions }: TransactionTableProps) => {
   return (
@@ -45,7 +62,6 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
               <TableCell className="max-w-[250px] pl-2 pr-10">
                 <div className="flex items-center gap-3">
                   <h1 className="text-14 truncate font-semibold text-[#344054]">
-                    {" "}
                     {removeSpecialCharacters(t.name)}
                   </h1>
                 </div>
@@ -59,12 +75,18 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
               >
                 {isDebit ? `- ${amount}` : isCredit ? amount : amount}
               </TableCell>
-              <TableCell className="pl-2 pr-10">{status}</TableCell>
+              <TableCell className="pl-2 pr-10">
+                <CategoryBadge category={status} />
+              </TableCell>
               <TableCell className="min-w-32 pl-2 pr-10">
                 {formatDateTime(new Date(t.date)).dateTime}
               </TableCell>
-              <TableCell className="pl-2 pr-10 capitalize min-w-24">{t.paymentChannel}</TableCell>
-              <TableCell className="pl-2 pr-10 max-md:hidden">{t.category}</TableCell>
+              <TableCell className="pl-2 pr-10 capitalize min-w-24">
+                {t.paymentChannel}
+              </TableCell>
+              <TableCell className="pl-2 pr-10 max-md:hidden">
+                <CategoryBadge category={t.category} />
+              </TableCell>
             </TableRow>
           );
         })}
