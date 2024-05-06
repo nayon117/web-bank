@@ -4,7 +4,6 @@ import TransactionsTable from "@/components/TransactionsTable";
 import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { formatAmount } from "@/lib/utils";
-import { format } from "path";
 
 const TransactionHistory = async ({
   searchParams: { id, page },

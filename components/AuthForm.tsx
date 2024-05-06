@@ -18,7 +18,7 @@ const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const formSchema = authFormSchema(type);
   // 1. Define your form.
@@ -27,25 +27,14 @@ const AuthForm = ({ type }: { type: string }) => {
     defaultValues: {
       email: "",
       password: "",
-      // firstName: "",
-      // lastName: "",
-      // address1: "",
-      // city: "",
-      // state: "",
-      // postalCode: "",
-      // dateOfBirth: "",
-      // ssn: "",
     },
   });
 
   // 2. Define a submit handler.
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-
     setIsLoading(true);
     try {
-
-      
-      if(type==='sign-up'){
+      if (type === "sign-up") {
         const userData = {
           firstName: data.firstName!,
           lastName: data.lastName!,
@@ -57,18 +46,18 @@ const AuthForm = ({ type }: { type: string }) => {
           postalCode: data.postalCode!,
           dateOfBirth: data.dateOfBirth!,
           ssn: data.ssn!,
-        }
-        console.log(userData)
-        const newUser = await signUp(userData)
+        };
+        console.log(userData);
+        const newUser = await signUp(userData);
 
-        setUser(newUser)
+        setUser(newUser);
       }
-      if(type==='sign-in'){
+      if (type === "sign-in") {
         const response = await signIn({
-          email:data.email,
-          password:data.password
-        })
-        if(response) router.push('/')
+          email: data.email,
+          password: data.password,
+        });
+        if (response) router.push("/");
       }
     } catch (error) {
       console.log(error);
@@ -86,10 +75,10 @@ const AuthForm = ({ type }: { type: string }) => {
             src="/icons/logo.svg"
             width={34}
             height={34}
-            alt="Horizon Logo"
+            alt="Webbank Logo"
           />
           <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
-            Horizon
+            Webbank
           </h1>
         </Link>
 
@@ -107,8 +96,7 @@ const AuthForm = ({ type }: { type: string }) => {
       {user ? (
         <div className="flex flex-col gap-4">
           <PlaidLink user={user} variant="primary" />
-          
-          </div>
+        </div>
       ) : (
         <>
           <Form {...form}>
